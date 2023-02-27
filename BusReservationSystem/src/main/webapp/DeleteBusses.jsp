@@ -40,7 +40,7 @@ RequestDispatcher dispatcher = null;
 	    	}
 	    	
 	     }catch(Exception ex) {
-	    	ex.printStackTrace();
+	    
 	    }
 %>
 </body>

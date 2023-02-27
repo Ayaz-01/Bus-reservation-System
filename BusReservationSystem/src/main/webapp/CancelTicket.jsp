@@ -39,10 +39,15 @@ RequestDispatcher dispatcher = null;
 	    	}
 	    	
 	     }catch(Exception ex) {
-	    	ex.printStackTrace();
+	    	
+	    }try{
+	    	dispatcher = request.getRequestDispatcher("index.jsp");
+	    	dispatcher.forward(request, response);
+	    }catch(Exception e){
+	    	
 	    }
-	    dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+	    
+		
 %>
 </body>
 </html>

@@ -2,14 +2,15 @@
 <%@page import="com.masai.Dto.Users" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%
+try{
   if(session.getAttribute("userId") == null){
 	  response.sendRedirect("login.jsp");
   }
+}catch(Exception e){
+	
+}
 
 %>
-
-						
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,7 +140,7 @@
 				    	
 				    	}
                         }catch(Exception e){
-                        	e.printStackTrace();
+                        	
                         }
 				    	
 				    	%>
@@ -290,13 +291,13 @@
 				<!-- Footer Social Icons-->
 				<div text-align="center">
 					<h4 class="text-uppercase mb-4">Around the Web</h4>
-					<a class="btn btn-outline-light btn-social mx-1" href="#!"><i
+					<a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/_ayaz_khan999/"><i
 						class="fab fa-fw fa-instagram"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
+						class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/AyazKhan1245"><i
 						class="fab fa-fw fa-twitter"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
+						class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/ayaz-khan-875a48231/"><i
 						class="fab fa-fw fa-linkedin-in"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
+						class="btn btn-outline-light btn-social mx-1" href="https://ayaz-portfolio-rho.vercel.app/"><i
 						class="fab fa-fw fa-dribbble"></i></a>
 				</div>
 				<!-- Footer About Text-->
@@ -307,7 +308,7 @@
 	<!-- Copyright Section-->
 	<div class="copyright py-4 text-center text-white">
 		<div class="container">
-			<small>Copyright &copy; AK Website 2023</small>
+			<small>Copyright &copy; AYAZ KHAN Website 2023</small>
 		</div>
 	</div>
 	
@@ -337,7 +338,7 @@
 		swal("Sorry","Wrong Source or Destination","error");
 	}
 	else if(status2 == "correct"){
-		swal("Congrats","Buss Cann Succesfully","success");
+		swal("Congrats","Buss Canncelled Succesfully","success");
 	}
 	</script>
 </body>

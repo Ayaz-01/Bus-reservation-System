@@ -12,6 +12,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Font Icon -->
+<link rel="stylesheet"
+	href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="css/style.css">
 <title></title>
 </head>
 <body>
@@ -56,7 +62,7 @@
 	    	}
 	    	
 	     }catch(Exception ex) {
-	    	ex.printStackTrace();
+	    	
 	    }
 	
 	     %>
@@ -81,16 +87,25 @@
 			    	int out2 = ps.executeUpdate();
 			    	dispatcher = request.getRequestDispatcher("Show.jsp");
 			    	if(out2>0) {
+			    		String status = "Success";
+			    		     request.setAttribute("status9","Success");
 			    			 dispatcher = request.getRequestDispatcher("Show.jsp");
 				    		 dispatcher.forward(request, response);
 			    	}
 			    	
 			     }catch(Exception ex) {
-			    	ex.printStackTrace();
+			    	
 			    }
-			 dispatcher = request.getRequestDispatcher("Show.jsp");
-	    		 dispatcher.forward(request, response);
+			    try{
+			    	dispatcher = request.getRequestDispatcher("Show.jsp");
+			    	dispatcher.forward(request, response);
+			    }catch(Exception e){
+			    	
+			    }
+			    
+	    		
      
      %>
+
 </body>
 </html>

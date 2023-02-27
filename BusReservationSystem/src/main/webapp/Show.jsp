@@ -38,7 +38,7 @@
 <link href="css/index-styles.css" rel="stylesheet" />
 </head>
 <body>
-
+<input type="hidden" id="status9" value="<%= request.getAttribute("status9") %>">
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
@@ -135,10 +135,11 @@
 				    	
 				    	}
                         }catch(Exception e){
-                        	e.printStackTrace();
+                        	
                         }
 				    	
 				    	%>
+				    	
 			    </table>
 	 </div>
 	 </div>
@@ -160,7 +161,7 @@
     <script type="text/javascript">
     
    
-	var status = document.getElementById("status7").value;
+	var status = document.getElementById("status9").value;
 	if(status == "Success") {
 		swal("Congrats","Buss Booked Succesfully","success");
 	}
