@@ -57,7 +57,7 @@
 	    		String s =  rs1.getString("seats");
 	    		String[] arr = s.split(",");
 	    		seatno = arr[2];
-	    		seatno =  rs1.getString("fare");
+	    		fare =  rs1.getInt("fare");
 	    		duration = rs1.getString("duration");
 	    	}
 	    	
