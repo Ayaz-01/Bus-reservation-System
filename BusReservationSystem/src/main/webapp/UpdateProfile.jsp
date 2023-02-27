@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<input type="hidden" id="status" value="<%= request.getAttribute("status6") %>">
+<input type="hidden" id="status4" value="<%= request.getAttribute("status6") %>">
 
 	<div class="main">
 
@@ -28,7 +28,7 @@
 					<div class="signup-form">
 						<h2 class="form-title">Update</h2>
 					
-						<form method="post" action="register" class="register-form"
+						<form method="post" action="update" class="register-form"
 							id="register-form">
 							<div class="form-group">
 								<label for="name"><i
@@ -84,7 +84,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
 	
 	<script type="text/javascript">
-	var status = document.getElementById("status6").value;
+	var status = document.getElementById("status4").value;
 	if(status == "Success") {
 		swal("Congrats","Account Updated Succesfully","success");
 	}else if(status == "failed"){

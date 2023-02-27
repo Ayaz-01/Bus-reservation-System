@@ -28,7 +28,7 @@
 <link href="css/index-styles.css" rel="stylesheet" />
 </head>
 <body>
-<input type="hidden" id="status2" value="<%= request.getAttribute("status3") %>">
+<input type="hidden" id="status6" value="<%= request.getAttribute("status10") %>">
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
@@ -168,7 +168,7 @@
 			    <input type="text" class="form-control" id="formGroupExampleInput2" name="SeatsBooked" placeholder="Enter SeatsBooked eg:-bangluru">
 			  </div>
 			  <br/>
-			  <button type="submit" class="btn btn-primary">Search</button>
+			  <button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 	</div>
 			<br/>
@@ -187,9 +187,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script type="text/javascript">
-	var status = document.getElementById("status3").value;
-	if(status == "Success") {
+	var status = document.getElementById("status6").value;
+	if(status == "correct") {
 		swal("Congrats","Busses Created Succesfully","success");
+	}else if(status == "incorrect"){
+		swal("Warning","Buss ID Already Exist","warning");
 	}else if(status == "failed"){
 		swal("Warning","Please Fill every input","warning");
 	}

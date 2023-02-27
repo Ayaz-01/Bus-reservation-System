@@ -22,27 +22,31 @@ public class Submit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String bussid = request.getParameter("BusId");
+		 RequestDispatcher dispatcher = null;
+	     HttpSession session = request.getSession();
+	    try {
+		int bussid = Integer.parseInt(request.getParameter("BusId"));
 	     String source = request.getParameter("source");
 	     String arrival = request.getParameter("arrival");
 	     String departure = request.getParameter("departure");
 	     String destination = request.getParameter("Destination");
 	     String seats = request.getParameter("Seats");
-	     String fare = request.getParameter("fare");
-	     String seatsbooked = request.getParameter("SeatsBooked");
+	     int fare = Integer.parseInt(request.getParameter("fare"));
+	     String seatsbooked = "";
+	     if(request.getParameter("SeatsBooked")!=null) {
+	      seatsbooked = request.getParameter("SeatsBooked");
+	     }
+	    
 	     String duration = request.getParameter("duration");
 	    
 	     
-	     RequestDispatcher dispatcher = null;
-	     HttpSession session = request.getSession();
-	     
-	     if(bussid!="" && source!="" && arrival!="" && departure!="" && destination!="" && seats!="" && seatsbooked!="" && duration!="" && fare!="") {
+	     if( source!="" && arrival!="" && departure!="" && destination!="" && seats!="" && seatsbooked!="" && duration!="" ) {
 			     Connection conn = null;
 			    try {
 //			    	Class.forName("com.mysql.cj.jdbc.Driver");
 			        conn = DbUtils.connectToDatabase();
-			    	PreparedStatement ps = conn.prepareStatement("insert into busses values(bid,source,destination,arrival,departure,duration,Seats,SeatsBooked,fare)");
-			    	ps.setString(1, bussid);
+			    	PreparedStatement ps = conn.prepareStatement("insert into busses values(?,?,?,?,?,?,?,?,?)");
+			    	ps.setInt(1, bussid);
 			    	ps.setString(2, source);
 			    	ps.setString(3, destination);
 			    	ps.setString(4, arrival);
@@ -50,19 +54,20 @@ public class Submit extends HttpServlet {
 			    	ps.setString(6, duration);
 			    	ps.setString(7, seats);
 			    	ps.setString(8, seatsbooked);
-			    	ps.setString(9, fare);
+			    	ps.setInt(9, fare);
 			    	
 			    	
 			    	int out = ps.executeUpdate();
 			    	dispatcher = request.getRequestDispatcher("Admin.jsp");
 			    	if(out>0) {
-			    		
-			    		session.setAttribute("userId", bussid);
+			    		request.setAttribute("status10", "correct");
 			    		 dispatcher = request.getRequestDispatcher("Admin.jsp");
 			    		 dispatcher.forward(request, response);
+			    		 
 			    	}else {
+			    		request.setAttribute("status10", "incorrect");
 			    		 dispatcher = request.getRequestDispatcher("Admin.jsp");
-			    		request.setAttribute("status3", "incorrect");
+			    	
 			    		dispatcher.forward(request, response);
 			    	}
 			    	
@@ -76,10 +81,12 @@ public class Submit extends HttpServlet {
 					}
 			    }
 	     }
-	     else {
-	    	 dispatcher = request.getRequestDispatcher("Admin.jsp");
-	    	 dispatcher.forward(request, response);
-	     }
+	    }catch(Exception e) {
+	    	
+	    }
+	 request.setAttribute("status10", "failed");
+   	 dispatcher = request.getRequestDispatcher("Admin.jsp");
+   	 dispatcher.forward(request, response);
 	}
 
 }

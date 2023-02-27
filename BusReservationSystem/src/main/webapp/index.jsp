@@ -35,7 +35,7 @@
 </head>
 <body id="page-top">
 <input type="hidden" id="status2" value="<%= request.getAttribute("status2") %>">
-<input type="hidden" id="status2" value="<%= request.getAttribute("status5") %>">
+<input type="hidden" id="status5" value="<%= request.getAttribute("status5") %>">
 	<!-- Navigation-->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"

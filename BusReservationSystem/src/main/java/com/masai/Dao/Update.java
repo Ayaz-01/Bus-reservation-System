@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Update
  */
-@WebServlet("/Update")
+@WebServlet("/update")
 public class Update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,18 +31,23 @@ public class Update extends HttpServlet {
 			    try {
 //			    	Class.forName("com.mysql.cj.jdbc.Driver");
 			        conn = DbUtils.connectToDatabase();
-			    	PreparedStatement ps = conn.prepareStatement("insert into users(username,password,email,mobileno) values(?,?,?,?)");
+			    	PreparedStatement ps = conn.prepareStatement(" update users set username=?,password=?,email=?,mobileno=? where username=?");
 			    	ps.setString(1, uname);
 			    	ps.setString(2, upass);
 			    	ps.setString(3, uemail);
 			    	ps.setString(4, umobile);
+			    	ps.setString(5, uname);
 			    	
 			    	int out = ps.executeUpdate();
-			    	dispatcher = request.getRequestDispatcher("registration.jsp");
+			    	dispatcher = request.getRequestDispatcher("UpdateProfile.jsp");
 			    	if(out>0) {
 			    		request.setAttribute("status6", "Success");
+			    		 dispatcher = request.getRequestDispatcher("UpdateProfile.jsp");
+		    			 dispatcher.forward(request, response);
 			    	}else {
-			    		request.setAttribute("status6", "failed");
+			    		request.setAttribute("status6", "incorrect");
+			    		 dispatcher = request.getRequestDispatcher("UpdateProfile.jsp");
+		    			 dispatcher.forward(request, response);
 			    	}
 			    	dispatcher.forward(request, response);
 			    }catch(Exception ex) {
@@ -56,7 +61,7 @@ public class Update extends HttpServlet {
 			    }
 	     }
 	     else {
-	    	 dispatcher = request.getRequestDispatcher("registration.jsp");
+	    	 dispatcher = request.getRequestDispatcher("UpdateProfile.jsp");
 	    	 request.setAttribute("status6", "failed");
 	    	 dispatcher.forward(request, response);
 	     }
