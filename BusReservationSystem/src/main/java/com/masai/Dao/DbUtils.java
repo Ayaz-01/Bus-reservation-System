@@ -1,4 +1,4 @@
-package com.masai.registration;
+package com.masai.Dao;
 
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package com.masai.registration;
+package com.masai.Dao;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.masai.Dto.Users;
 
 /**
  * Servlet implementation class Login
@@ -40,12 +42,31 @@ public class Login extends HttpServlet {
 			    	ResultSet rs = ps.executeQuery();
 			    	dispatcher = request.getRequestDispatcher("login.jsp");
 			    	if(rs.next()) {
-			    		session.setAttribute("name", rs.getString("username"));
-			    		 dispatcher = request.getRequestDispatcher("index.jsp");
+			    		int id = rs.getInt("id");
+			    		String name = rs.getString("username");
+			    		String email = rs.getString("email");
+			    		boolean access = rs.getBoolean("Admin");
+			    		System.out.println(access);
+//			    		String mobNo = rs.getString("mobileno");
+//			    		boolean admin = rs.getBoolean("admin");
+//			    		Users user = new Users(id,name,email,pass,mobNo,admin);
+			    		session.setAttribute("email", email);
+			    		session.setAttribute("name", name);
+			    		session.setAttribute("userId", id);
+			    		if(access==true) {
+			    			System.out.println("access granted");
+			    			 dispatcher = request.getRequestDispatcher("Admin.jsp");
+			    			 dispatcher.forward(request, response);
+			    		}else {
+			    			 dispatcher = request.getRequestDispatcher("index.jsp");
+				    		 dispatcher.forward(request, response);
+			    		}
 			    	}else {
+			    		 dispatcher = request.getRequestDispatcher("login.jsp");
 			    		request.setAttribute("status", "incorrect");
+			    		dispatcher.forward(request, response);
 			    	}
-			    	dispatcher.forward(request, response);
+			    	
 			    }catch(Exception ex) {
 			    	ex.printStackTrace();
 			    }finally {
