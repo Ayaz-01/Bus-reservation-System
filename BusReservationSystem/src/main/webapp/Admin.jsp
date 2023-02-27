@@ -43,6 +43,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
+				<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="index.jsp">Back To Home</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Bookings Record</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
@@ -123,12 +125,12 @@
 	<form method="post" action="submit">
 			  <div class="form-group">
 			    <label for="formGroupExampleInput">BusId</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput" name="BusId" placeholder="Enter BusId eg:-kalyan">
+			    <input type="text" class="form-control" id="formGroupExampleInput" name="BusId" placeholder="Enter BusId eg:-709">
 			  </div>
 			  <br/>
 			  <div class="form-group">
 			    <label for="formGroupExampleInput2">source</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="source" placeholder="Enter source eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="source" placeholder="Enter source eg:-kalyan">
 			  </div>
 			  <br/>
 			   <div class="form-group">
@@ -138,37 +140,37 @@
 			   <br/>
 			    <div class="form-group">
 			    <label for="formGroupExampleInput2">arrival</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="arrival" placeholder="Enter arrival eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="arrival" placeholder="Enter arrival eg:-12:00pm  03/03/23">
 			  </div>
 			   <br/>
 			    <div class="form-group">
 			    <label for="formGroupExampleInput2">duration</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="duration" placeholder="Enter duration eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="duration" placeholder="Enter duration eg:-12h">
 			  </div>
 			   <br/>
 			    <div class="form-group">
 			    <label for="formGroupExampleInput2">departure</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="departure" placeholder="Enter departure eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="departure" placeholder="Enter departure eg:-12:00pm  03/03/23">
 			  </div>
 			   <br/>
 			   
 			    <div class="form-group">
 			    <label for="formGroupExampleInput2">Seats</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="Seats" placeholder="Enter Seats eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="Seats" placeholder="Enter Seats eg:d1,d2,d3">
 			  </div>
 			   <br/>
 			    <div class="form-group">
 			    <label for="formGroupExampleInput2">fare</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="fare" placeholder="Enter fare eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="fare" placeholder="Enter fare eg:-100rs">
 			  </div>
 			   <br/>
 			   </div>
 			    <div class="form-group">
 			    <label for="formGroupExampleInput2">SeatsBooked</label>
-			    <input type="text" class="form-control" id="formGroupExampleInput2" name="SeatsBooked" placeholder="Enter SeatsBooked eg:-bangluru">
+			    <input type="text" class="form-control" id="formGroupExampleInput2" name="SeatsBooked" placeholder="">
 			  </div>
 			  <br/>
-			  <button type="submit" class="btn btn-primary">Submit</button>
+			  <button  type="submit" class="btn btn-primary">Submit</button>
 			</form>
 	</div>
 			<br/>
