@@ -1,4 +1,12 @@
-
+  <%@page import="java.sql.*"%>
+     <%@page import="javax.servlet.RequestDispatcher"%>
+ <%@page import="javax.servlet.ServletException"%>
+ <%@page import="javax.servlet.annotation.WebServlet"%>
+ <%@page import="javax.servlet.http.HttpServlet"%>
+ <%@page import="javax.servlet.http.HttpServletRequest"%>
+ <%@page import="javax.servlet.http.HttpServletResponse"%>
+ <%@page import="javax.servlet.http.HttpSession"%>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,34 +33,58 @@
 		<section class="signup">
 			<div class="container">
 				<div class="signup-content">
+					
 					<div class="signup-form">
 						<h2 class="form-title">Update</h2>
-					
+						
 						<form method="post" action="update" class="register-form"
 							id="register-form">
+							<%
+						Connection conn1 = null;
+						try{
+	                        Class.forName("com.mysql.cj.jdbc.Driver");
+					        conn1 = DriverManager.getConnection("jdbc:mysql://localhost/project101db","root","root");
+					    	PreparedStatement ps1 = conn1.prepareStatement("select * from users where id=?");
+					    	int userId = (int)session.getAttribute("userId");
+					        System.out.println(userId);
+					    	ps1.setInt(1, userId);
+					    	ResultSet rs1 = ps1.executeQuery();
+					    	int x =1;
+					    	while(rs1.next()){
+					    		System.out.println(rs1.getString("email"));
+					    		x++;
+							%>
 							<div class="form-group">
 								<label for="name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
-									type="text" name="name" id="name" placeholder="Your Name" />
+									type="text" name="name" id="name" value="<%=rs1.getString("username") %>" placeholder="Your Name" />
 							</div>
 							<div class="form-group">
 								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
-									type="email" name="email" id="email" placeholder="Your Email" />
+									type="email" name="email" id="email" value="<%=rs1.getString("email") %>" placeholder="Your Email" />
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="pass" id="pass" placeholder="Password" />
+									type="password" name="pass" value="<%=rs1.getString("password") %>" id="pass" placeholder="Password" />
 							</div>
 							<div class="form-group">
 								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-								<input type="password" name="re_pass" id="re_pass"
+								<input type="password"  value="<%=rs1.getString("password") %>" name="re_pass" id="re_pass"
 									placeholder="Repeat your password" />
 							</div>
 							<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
-								<input type="text" name="contact" id="contact"
+								<input type="text" name="contact" value="<%=rs1.getString("mobileno") %>" id="contact"
 									placeholder="Contact no" />
 							</div>
+							
+							   <%
+							}
+						}catch(Exception e){
+							
+						}
+						
+						%>
 							<div class="form-group">
 								<input type="checkbox" name="agree-term" id="agree-term"
 									class="agree-term" /> <label for="agree-term"
@@ -60,11 +92,13 @@
 									agree all statements in <a href="#" class="term-service">Terms
 										of service</a></label>
 							</div>
+							
 							<div class="form-group form-button">
 								<input type="submit" name="Update" id="signup"
 									class="form-submit" value="Update" />
 							</div>
 						</form>
+						
 					</div>
 					<div class="signup-image">
 						<figure>
@@ -75,7 +109,7 @@
 				</div>
 			</div>
 		</section>
-
+	            
 
 	</div>
 	<!-- JS -->
