@@ -65,4 +65,6 @@ BookingRec,
 Busses.
 </br>
 
+ER Diagram:-
+<img src="https://raw.githubusercontent.com/Ayaz-01/aquatic-beef-7375/main/Screenshot%202023-04-06%20201150.png">
 
