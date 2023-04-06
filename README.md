@@ -65,5 +65,4 @@ BookingRec,
 Busses.
 </br>
 
-#Deploy Link
-https://6426c99568302c13b2189fe3--visionary-malabi-1b2118.netlify.app
+
