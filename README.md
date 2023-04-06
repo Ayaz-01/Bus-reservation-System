@@ -1,5 +1,5 @@
 <img src="https://gst-contracts.s3.amazonaws.com/uploads/bcc/cms/asset/avatar/116426/banner_banner-psd.jpg">
-# AK Buss Reservation System
+# AK Bus Reservation System
 </br>
 Bus Ticket Reservation System
 The Bus Reservation System is designed to automate online ticket purchasing through an easy-to-use online bus booking system. Embed our online bus ticketing system into your website and enable your customers to book tickets for various routes and destinations. With the bus ticket reservation system, you can manage reservations, client data, and passenger lists. You can also schedule routes, set seat availability,etc.
@@ -47,11 +47,11 @@ Functionality for Admin:-
 </br>
 Login,
 </br>
-Addd Busses,
+Add Buses,
 </br>
-Delete Busses,
+Delete Buses,
 </br>
-See all Busses Details.
+See all Buses Details.
 </br>
 </br>
 
@@ -62,9 +62,10 @@ Users,
 </br>
 BookingRec,
 </br>
-Busses.
+Buses.
 </br>
 
 ER Diagram:-
+
 <img src="https://raw.githubusercontent.com/Ayaz-01/aquatic-beef-7375/main/Screenshot%202023-04-06%20201150.png">
 
