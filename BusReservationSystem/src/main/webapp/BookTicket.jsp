@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
           <%@page import="java.sql.*"%>
-     <%@page import="javax.servlet.RequestDispatcher"%>
- <%@page import="javax.servlet.ServletException"%>
- <%@page import="javax.servlet.annotation.WebServlet"%>
- <%@page import="javax.servlet.http.HttpServlet"%>
- <%@page import="javax.servlet.http.HttpServletRequest"%>
- <%@page import="javax.servlet.http.HttpServletResponse"%>
- <%@page import="javax.servlet.http.HttpSession"%>
+     <%@page import="javax.servlet.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +19,13 @@
      <%
      RequestDispatcher dispatcher = null;
      int bid = Integer.parseInt(request.getParameter("bid"));
+     System.out.println(bid+" inside bookingTic ");
      Connection conn = null;
 		String source = null;
 		String destination = null;
 		String arrival = null;
 		String departure = null;
-		int uid = 1;
+		int uid = 0;
 		try{
 			 uid =	(int)session.getAttribute("userId");
 		}catch(Exception e){
@@ -40,13 +36,11 @@
 		int fare = 0;
 		String pname = (String)session.getAttribute("name");
 	    try {
+	    	
   	Class.forName("com.mysql.cj.jdbc.Driver");
     conn = DriverManager.getConnection("jdbc:mysql://localhost/project101db","root","root");
 	    	PreparedStatement ps1 = conn.prepareStatement("select * from Busses where bid=?");
 	    	ps1.setInt(1, bid);
-	    
-	    	
-	    	
 	    	ResultSet rs1 = ps1.executeQuery();
 	    	while(rs1.next()){
 	    		source = rs1.getString("source");
@@ -64,11 +58,9 @@
 	     }catch(Exception ex) {
 	    	
 	    }
-	
-	     %>
-	  <% 
 			     Connection conn1 = null;
 			    try {
+			    
  		    	Class.forName("com.mysql.cj.jdbc.Driver");
 		       conn1 = DriverManager.getConnection("jdbc:mysql://localhost/project101db","root","root");
 			    	PreparedStatement ps = conn.prepareStatement("insert into bookingrec(source,destination,arrival,departure,duration,seatno,fare,pname,bid,uid) values(?,?,?,?,?,?,?,?,?,?)");
@@ -82,17 +74,18 @@
 			    	ps.setString(8, pname);
 			    	ps.setInt(9, bid);
 			    	ps.setInt(10, uid);
-			    	
-			    	
 			    	int out2 = ps.executeUpdate();
-			    	dispatcher = request.getRequestDispatcher("Show.jsp");
+			    	//dispatcher = request.getRequestDispatcher("Show.jsp");
 			    	if(out2>0) {
-			    		String status = "Success";
 			    		     request.setAttribute("status9","Success");
 			    			 dispatcher = request.getRequestDispatcher("Show.jsp");
 				    		 dispatcher.forward(request, response);
+			    	}else{
+			    		request.setAttribute("status9","incorrect");
+				    	dispatcher = request.getRequestDispatcher("Show.jsp");
+				    	dispatcher.forward(request, response);
 			    	}
-			    	
+			    	ps.close();
 			     }catch(Exception ex) {
 			    	
 			    }
@@ -102,9 +95,10 @@
 			    }catch(Exception e){
 			    	
 			    }
-			    
-	    		
-     
+			    finally{
+			    	conn1.close();
+			    	conn.close();
+			    }
      %>
 
 </body>

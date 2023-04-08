@@ -2,6 +2,10 @@
 <%@page import="com.masai.Dto.Users" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%
+/*
+For Authenticating if User/Admin logged in or not if not then
+redirect it back to login page
+*/
 try{
   if(session.getAttribute("userId") == null){
 	  response.sendRedirect("login.jsp");
@@ -331,14 +335,14 @@ try{
     var status2 = document.getElementById("status5").value;
 	var status = document.getElementById("status2").value;
 	if(status == "Success") {
-		swal("Congrats","Account Created Succesfully","success");
+		swal("Congrats","Account Created Successfully","success");
 	}else if(status == "failed"){
 		swal("Warning","Please Fill every input","warning");
 	}else if(status == "incorrect"){
 		swal("Sorry","Wrong Source or Destination","error");
 	}
 	else if(status2 == "correct"){
-		swal("Congrats","Buss Canncelled Succesfully","success");
+		swal("Congrats","Bus Canncelled Successfully","success");
 	}
 	</script>
 </body>

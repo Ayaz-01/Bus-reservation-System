@@ -1,6 +1,10 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
+    /*
+    For Authenticating if Admin logged in or not if not then
+    redirect it back to login page
+    */
   if(session.getAttribute("name")==null){
 	  response.sendRedirect("login.jsp");
 	  
@@ -191,9 +195,9 @@
     <script type="text/javascript">
 	var status = document.getElementById("status6").value;
 	if(status == "correct") {
-		swal("Congrats","Busses Created Succesfully","success");
+		swal("Congrats","Buses Created Succesfully","success");
 	}else if(status == "incorrect"){
-		swal("Warning","Buss ID Already Exist","warning");
+		swal("Warning","Bus ID Already Exist","warning");
 	}else if(status == "failed"){
 		swal("Warning","Please Fill every input","warning");
 	}

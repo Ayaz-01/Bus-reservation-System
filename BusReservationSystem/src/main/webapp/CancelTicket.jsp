@@ -17,10 +17,7 @@
 <body>
 <%
 
-RequestDispatcher dispatcher = null;
-
-
-
+         RequestDispatcher dispatcher = null;
 	     Connection conn = null;
 	    try {
 	    	int id2 = Integer.parseInt(request.getParameter("id"));

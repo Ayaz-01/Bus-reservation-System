@@ -54,6 +54,7 @@
 					    		System.out.println(rs1.getString("email"));
 					    		x++;
 							%>
+							
 							<div class="form-group">
 								<label for="name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
@@ -123,6 +124,8 @@
 		swal("Congrats","Account Updated Succesfully","success");
 	}else if(status == "failed"){
 		swal("Warning","Please Fill every input","warning");
+	}else if(status == "incorrect"){
+		swal("Warning","Something Went wrong You Cannot Change your UserName","warning");
 	}
 	</script>
 

@@ -38,7 +38,7 @@
 <link href="css/index-styles.css" rel="stylesheet" />
 </head>
 <body>
-<input type="hidden" id="status9" value="<%= request.getAttribute("status9") %>">
+
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
@@ -91,17 +91,22 @@
 				        Connection conn1 = null;
      
                         try{
-                        String id = (String)session.getAttribute("dest");
+                        String dest = (String)session.getAttribute("dest");
+                        System.out.println(dest+" inside show");
+                        String source1 = (String)session.getAttribute("source");
+                        System.out.println(source1+" inside show");
                         Class.forName("com.mysql.cj.jdbc.Driver");
 				        conn1 = DriverManager.getConnection("jdbc:mysql://localhost/project101db","root","root");
-				    	PreparedStatement ps1 = conn1.prepareStatement("select * from busses where destination=?");
-				    	ps1.setString(1, id);
+				    	PreparedStatement ps1 = conn1.prepareStatement("select * from busses where source=? and destination=?");
+				    	ps1.setString(1, source1);
+				    	ps1.setString(2, dest);
 				    	ResultSet rs1 = ps1.executeQuery();
 				    	int x =1;
 				    	while(rs1.next()){
 				    		System.out.println(x);
 				    		x++;
 				    		int bid =  rs1.getInt("bid");
+				    		System.out.println(bid);
 				    		String source = rs1.getString("source");
 				    		String destination = rs1.getString("destination");
 				    		String arrival = rs1.getString("arrival");
@@ -109,6 +114,7 @@
 				    		String duration = rs1.getString("duration");
 				    		String seats = rs1.getString("seats");
 				    		int fare = rs1.getInt("fare");
+				    		ps1.close();
 				    		%>
 		                 <tbody>
 				    		 <tr>
@@ -128,7 +134,7 @@
 						      <td><%=seats%></td>
 						     
 						      <td><%=fare%></td>
-						      <td><a href="BookTicket.jsp?bid=<%= rs1.getInt("bid") %>" >Book Ticket</a></td>
+						      <td><a href="javascript:void(0);" onclick="location.href = 'BookTicket.jsp?bid=<%= bid %>';" >Book Ticket</a></td>
 						    </tr>
 				    	</tbody>
 				    	<% 
@@ -136,6 +142,10 @@
 				    	}
                         }catch(Exception e){
                         	
+                        }finally{
+                        	System.out.println("inside finally");
+                        	
+                        	conn1.close();
                         }
 				    	
 				    	%>
@@ -143,6 +153,7 @@
 			    </table>
 	 </div>
 	 </div>
+	 <input type="hidden" id="status9" value="<%= request.getAttribute("status9") %>">
 	</section>
 			    <!-- Bootstrap core JS-->
 	<script
@@ -159,11 +170,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script type="text/javascript">
-    
-   
 	var status = document.getElementById("status9").value;
 	if(status == "Success") {
-		swal("Congrats","Buss Booked Succesfully","success");
+		swal("Congrats","Bus Booked Successfully","success");
 	}
 	</script>
 </body>
